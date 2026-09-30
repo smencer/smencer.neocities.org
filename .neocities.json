@@ -1,0 +1,10 @@
+{
+  "sitename": "mysite",
+  "ignore": [
+    ".git",
+    ".gitignore",
+    ".neocities.json",
+    "posts",
+    "drafts"
+  ]
+}

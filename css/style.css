@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #00ff00;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 18px;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* CRT screen effect */
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid #00ff00;
+    padding: 20px;
+    box-shadow: 0 0 10px #00ff00, inset 0 0 5px #003300;
+}
+
+.header {
+    text-align: center;
+    border-bottom: 1px dashed #00ff00;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.ascii-art {
+    color: #00ff00;
+    white-space: pre;
+    font-size: 12px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.ascii-art-mobile {
+    display: none;
+    color: #00ff00;
+    white-space: pre;
+    font-size: 14px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 28px;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+.blink {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.prompt {
+    color: #00cc00;
+}
+
+.prompt::before {
+    content: "visitor@smencer:~$ ";
+    color: #008800;
+}
+
+nav {
+    margin: 20px 0;
+    padding: 10px 0;
+    border-bottom: 1px dashed #00ff00;
+}
+
+nav a {
+    color: #00ffff;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+nav a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+section {
+    margin: 30px 0;
+    padding: 15px;
+    border-left: 3px solid #004400;
+}
+
+h2 {
+    color: #00ff00;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+h2::before {
+    content: "## ";
+    color: #008800;
+}
+
+a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+li::before {
+    content: "> ";
+    color: #008800;
+}
+
+.update {
+    border: 1px solid #004400;
+    padding: 10px;
+    margin: 10px 0;
+    background: #001100;
+}
+
+.update-date {
+    color: #008800;
+    font-size: 14px;
+}
+
+.guestbook-form {
+    margin-top: 15px;
+}
+
+input, textarea {
+    background: #001100;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    padding: 8px;
+    margin: 5px 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 5px #00ff00;
+}
+
+button {
+    background: #003300;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    padding: 8px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #004400;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+.webring {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed #00ff00;
+    font-size: 14px;
+}
+
+.counter {
+    text-align: center;
+    margin-top: 20px;
+    color: #008800;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed #00ff00;
+    color: #008800;
+    font-size: 14px;
+}
+
+/* Glitch effect on hover for header */
+.glitch:hover {
+    animation: glitch 0.3s infinite;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
+    25% { text-shadow: -2px 0 #ff0000, 2px 0 #0000ff; }
+    50% { text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
+    75% { text-shadow: -2px 0 #ff0000, 2px 0 #0000ff; }
+    100% { text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .ascii-art { display: none; }
+    .ascii-art-mobile { display: block; }
+    body { padding: 10px; }
+    .container { padding: 15px; }
+    h1 { font-size: 20px; }
+    nav a { margin-right: 10px; }
+    section { padding: 10px; }
+}

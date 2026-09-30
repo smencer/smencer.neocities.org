@@ -4,245 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>smencer's terminal</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #0a0a0a;
-            color: #00ff00;
-            font-family: 'VT323', 'Courier New', monospace;
-            font-size: 18px;
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        /* CRT screen effect */
-        body::before {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            background-size: 100% 4px;
-            z-index: 1000;
-            pointer-events: none;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 1px solid #00ff00;
-            padding: 20px;
-            box-shadow: 0 0 10px #00ff00, inset 0 0 5px #003300;
-        }
-
-        .header {
-            text-align: center;
-            border-bottom: 1px dashed #00ff00;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-        }
-
-        .ascii-art {
-            color: #00ff00;
-            white-space: pre;
-            font-size: 12px;
-            line-height: 1.2;
-            margin-bottom: 10px;
-        }
-
-        .ascii-art-mobile {
-            display: none;
-            color: #00ff00;
-            white-space: pre;
-            font-size: 14px;
-            line-height: 1.2;
-            margin-bottom: 10px;
-        }
-
-        h1 {
-            font-size: 28px;
-            text-shadow: 0 0 10px #00ff00;
-        }
-
-        .blink {
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .prompt {
-            color: #00cc00;
-        }
-
-        .prompt::before {
-            content: "visitor@smencer:~$ ";
-            color: #008800;
-        }
-
-        nav {
-            margin: 20px 0;
-            padding: 10px 0;
-            border-bottom: 1px dashed #00ff00;
-        }
-
-        nav a {
-            color: #00ffff;
-            text-decoration: none;
-            margin-right: 20px;
-        }
-
-        nav a:hover {
-            color: #ffffff;
-            text-shadow: 0 0 5px #00ffff;
-        }
-
-        section {
-            margin: 30px 0;
-            padding: 15px;
-            border-left: 3px solid #004400;
-        }
-
-        h2 {
-            color: #00ff00;
-            margin-bottom: 15px;
-            font-size: 22px;
-        }
-
-        h2::before {
-            content: "## ";
-            color: #008800;
-        }
-
-        a {
-            color: #00ffff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 20px;
-        }
-
-        li::before {
-            content: "> ";
-            color: #008800;
-        }
-
-        .update {
-            border: 1px solid #004400;
-            padding: 10px;
-            margin: 10px 0;
-            background: #001100;
-        }
-
-        .update-date {
-            color: #008800;
-            font-size: 14px;
-        }
-
-        .guestbook-form {
-            margin-top: 15px;
-        }
-
-        input, textarea {
-            background: #001100;
-            border: 1px solid #00ff00;
-            color: #00ff00;
-            font-family: 'VT323', monospace;
-            font-size: 16px;
-            padding: 8px;
-            margin: 5px 0;
-            width: 100%;
-            max-width: 400px;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            box-shadow: 0 0 5px #00ff00;
-        }
-
-        button {
-            background: #003300;
-            border: 1px solid #00ff00;
-            color: #00ff00;
-            font-family: 'VT323', monospace;
-            font-size: 18px;
-            padding: 8px 20px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background: #004400;
-            box-shadow: 0 0 10px #00ff00;
-        }
-
-        .webring {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px dashed #00ff00;
-            font-size: 14px;
-        }
-
-        .counter {
-            text-align: center;
-            margin-top: 20px;
-            color: #008800;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px dashed #00ff00;
-            color: #008800;
-            font-size: 14px;
-        }
-
-        /* Glitch effect on hover for header */
-        .glitch:hover {
-            animation: glitch 0.3s infinite;
-        }
-
-        @keyframes glitch {
-            0% { text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
-            25% { text-shadow: -2px 0 #ff0000, 2px 0 #0000ff; }
-            50% { text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
-            75% { text-shadow: -2px 0 #ff0000, 2px 0 #0000ff; }
-            100% { text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
-        }
-
-        /* Mobile responsiveness */
-        @media (max-width: 600px) {
-            .ascii-art { display: none; }
-            .ascii-art-mobile { display: block; }
-            body { padding: 10px; }
-            .container { padding: 15px; }
-            h1 { font-size: 20px; }
-            nav a { margin-right: 10px; }
-            section { padding: 10px; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
@@ -266,78 +28,26 @@
 
         <nav>
             [<a href="#about">about</a>]
-            [<a href="#links">links</a>]
-            [<a href="#blog">blog</a>]
-            [<a href="#guestbook">guestbook</a>]
+            [<a href="./blog/index.html">blog</a>]
+            [<a href="https://github.com/smencer" target="_blank">github</a>]
         </nav>
 
         <section id="about">
             <h2>about.txt</h2>
             <p>Hello, world! I'm <strong>smencer</strong>.</p>
-            <br>
-            <p>I'm interested in:</p>
-            <ul>
-                <li>technology & programming</li>
-                <li>the old web aesthetic</li>
-                <li>digital freedom</li>
-                <li>[add your interests here]</li>
-            </ul>
-            <br>
-            <p>This site is a work in progress. Check back for updates!</p>
         </section>
 
-        <section id="links">
-            <h2>bookmarks.html</h2>
-            <p>Cool places on the web:</p>
-            <ul>
-                <li><a href="https://neocities.org" target="_blank">Neocities</a> - the web revival</li>
-                <li><a href="https://wiby.me" target="_blank">Wiby.me</a> - search the old web</li>
-                <li><a href="https://textfiles.com" target="_blank">textfiles.com</a> - digital history</li>
-                <li><a href="https://poolside.fm" target="_blank">Poolside FM</a> - retro vibes radio</li>
-                <li>[add your links here]</li>
-            </ul>
-        </section>
-
-        <section id="blog">
-            <h2>blog.log</h2>
-            <div class="update">
-                <span class="update-date">[2026-01-16]</span>
-                <p>> Site launched! Welcome to my new home on the web. More updates coming soon...</p>
-            </div>
-            <div class="update">
-                <span class="update-date">[2026-01-16]</span>
-                <p>> "The web is more a social creation than a technical one." - Tim Berners-Lee</p>
-            </div>
-        </section>
-
-        <section id="guestbook">
-            <h2>guestbook.sh</h2>
-            <p>Leave a message! (Note: This is a static page - consider using a service like <a href="https://www.smartgb.com/" target="_blank">SmartGB</a> for a real guestbook)</p>
-            <div class="guestbook-form">
-                <input type="text" placeholder="your name...">
-                <br>
-                <textarea rows="3" placeholder="your message..."></textarea>
-                <br>
-                <button type="button">./submit.sh</button>
-            </div>
-            <br>
-            <p>--- Previous entries ---</p>
-            <div class="update">
-                <span class="update-date">[system]</span>
-                <p>> Guestbook initialized. Be the first to sign!</p>
-            </div>
-        </section>
-
+	<!--
         <div class="webring">
             &lt;&lt; <a href="#">prev</a> |
             <a href="#">Neocities Webring</a> |
             <a href="#">next</a> &gt;&gt;
         </div>
+	-->
 
         <div class="counter">
             You are visitor #<span id="counter">????</span>
             <br>
-            <img src="https://camo.githubusercontent.com/5a9f2a326799dabc5f6ea3da66ff0e3c3b38dd5a14c93e1f1f8e8c1f8c1e8e8e/68747470733a2f2f686974636f756e7465722e70797468" alt="counter placeholder" style="display:none;">
         </div>
 
         <footer class="footer">
@@ -348,5 +58,10 @@
             </p>
         </footer>
     </div>
+    <script language="javascript">
+	    fetch('https://hits.scottmencer.com/hit', { mode: "cors" })
+		.then(res => res.json())
+		.then(data => document.getElementById('counter').innerHTML = `${data.count} - New? ${data.new ? "yes" : "no"}`);
+    </script>
 </body>
 </html>
